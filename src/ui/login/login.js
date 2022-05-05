@@ -13,11 +13,26 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import NavigationConstant from '../../core/constant/navigation';
+import storage from "../../core/init/storage/storage";
+import CacheConstant from '../../core/constant/cache';
 
 export default function LoginView() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigation = useNavigation();
+
+    async function loginUser() {
+        const acc = await storage.get(CacheConstant.account)
+        let users = acc ?? [];
+        if (email != "" && password != "") {
+            Array.from(users).filter((item) => {
+                if (item.email == email && item.password == password) {
+                    navigation.navigate(NavigationConstant.register)
+                    return;
+                }
+            })
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -43,7 +58,9 @@ export default function LoginView() {
             </View>
 
 
-            <TouchableOpacity style={styles.loginBtn}>
+            <TouchableOpacity style={styles.loginBtn} onPress={async () => {
+                await loginUser()
+            }}>
                 <Text style={styles.loginText}>{Lang.login.toUpperCase()}</Text>
             </TouchableOpacity>
 

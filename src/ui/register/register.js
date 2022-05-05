@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Lang from '../../core/init/lang/en';
 import AppColors from '../../core/init/theme/colors';
-import { useNavigation } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import {
     StyleSheet,
     Text,
@@ -11,12 +11,39 @@ import {
     TextInput,
     TouchableOpacity,
 } from "react-native";
+import storage from "../../core/init/storage/storage";
+import CacheConstant from '../../core/constant/cache';
+import NavigationConstant from '../../core/constant/navigation';
 
 export default function RegisterView() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = React.useState("");
     const navigation = useNavigation();
+    const isFocus = useIsFocused()
+
+    React.useEffect(() => {
+        getRegisterUser();
+    }, [isFocus])
+
+    async function getRegisterUser() {
+        const acc = await storage.get(CacheConstant.account)
+        console.log("register", acc);
+    }
+
+    async function register() {
+        if (name != "" && password != "" && email != "") {
+            const acc = await storage.get(CacheConstant.account);
+            console.log("register acc", acc);
+            let list = acc ?? [];
+            list.push({ email: email, password: password, name: name })
+            await storage.set(CacheConstant.account, list);
+            console.log("list", list);
+            setTimeout(() => {
+                navigation.navigate(NavigationConstant.login);
+            }, 250);
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -50,8 +77,10 @@ export default function RegisterView() {
                 />
             </View>
 
-            <TouchableOpacity style={styles.registerButton}>
-                <Text style={styles.registerText}>{Lang.login.toUpperCase()}</Text>
+            <TouchableOpacity style={styles.registerButton} onPress={async () => {
+                await register();
+            }}>
+                <Text style={styles.registerText}>{Lang.register.toUpperCase()}</Text>
             </TouchableOpacity>
 
             <Text style={{ color: 'white', marginTop: 16 }}>{Lang.or}</Text>
