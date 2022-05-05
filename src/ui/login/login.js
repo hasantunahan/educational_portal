@@ -11,15 +11,17 @@ import {
     TouchableOpacity,
     StatusBar,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
 import NavigationConstant from '../../core/constant/navigation';
 import storage from "../../core/init/storage/storage";
 import CacheConstant from '../../core/constant/cache';
+import { AppSessions } from "../../_product/session/session";
 
 export default function LoginView() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigation = useNavigation();
+    const isFocus = useIsFocused();
 
     async function loginUser() {
         const acc = await storage.get(CacheConstant.account)

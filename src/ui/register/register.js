@@ -14,6 +14,8 @@ import {
 import storage from "../../core/init/storage/storage";
 import CacheConstant from '../../core/constant/cache';
 import NavigationConstant from '../../core/constant/navigation';
+import uuid from 'react-native-uuid';
+import { AppSessions } from '../../_product/session/session';
 
 export default function RegisterView() {
     const [email, setEmail] = useState("");
@@ -36,7 +38,7 @@ export default function RegisterView() {
             const acc = await storage.get(CacheConstant.account);
             console.log("register acc", acc);
             let list = acc ?? [];
-            list.push({ email: email, password: password, name: name })
+            list.push({ email: email, password: password, name: name, id: uuid.v4() })
             await storage.set(CacheConstant.account, list);
             console.log("list", list);
             setTimeout(() => {
