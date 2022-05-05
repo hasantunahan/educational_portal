@@ -29,7 +29,7 @@ export default function LoginView() {
         if (email != "" && password != "") {
             Array.from(users).filter((item) => {
                 if (item.email == email && item.password == password) {
-                    navigation.navigate(NavigationConstant.register)
+                    navigation.navigate(NavigationConstant.home)
                     return;
                 }
             })

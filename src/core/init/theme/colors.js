@@ -3,5 +3,6 @@ export default AppColors = {
     secondary: "#FDBE98",
     button: "#9F6BF1",
     text: "#003f5c",
-    whiteText: "#FFFFFF"
+    whiteText: "#FFFFFF",
+    whiteTextOpacity: "#FFFFFF2D"
 }

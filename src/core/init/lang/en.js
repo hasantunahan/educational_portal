@@ -5,5 +5,6 @@ export default Lang = {
     password: "Password",
     name: "Name",
     register : "Register",
-    or : "or"
+    or : "or",
+    educational : "Educational Portal"
 }

@@ -1,4 +1,5 @@
 export default NavigationConstant = {
     login: "Login",
-    register: "Register"
+    register: "Register",
+    home : "Home"
 }
