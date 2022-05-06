@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, StyleSheet, StatusBar, FlatList, Image } from "react-native";
-import AppColors from '../../core/init/theme/colors';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import Lang from '../../core/init/lang/en';
 import HomeMenuItem from "../../_product/component/molecules/home_menu_item";
