@@ -28,6 +28,76 @@ export default function RegisterView() {
         getRegisterUser();
     }, [isFocus])
 
+    function renderLogo() {
+        return <Image style={styles.logo} source={require("../../../assets/logo.png")}
+        />
+    }
+
+    function renderEmailTextField() {
+        return <View style={[styles.inputView, { marginTop: 32 }]}>
+            <TextInput
+                style={styles.TextInput}
+                placeholder={Lang.email}
+                placeholderTextColor={AppColors.text}
+                onChangeText={(email) => setEmail(email)}
+            />
+        </View>
+    }
+
+    function renderPasswordTextField() {
+        return <View style={styles.inputView}>
+            <TextInput
+                style={styles.TextInput}
+                placeholder={Lang.password}
+                placeholderTextColor={AppColors.text}
+                secureTextEntry={true}
+                onChangeText={(password) => setPassword(password)}
+            />
+        </View>
+    }
+
+    function renderNameTextField() {
+        return <View style={styles.inputView}>
+            <TextInput
+                style={styles.TextInput}
+                placeholder={Lang.name}
+                placeholderTextColor={AppColors.text}
+                onChangeText={(text) => setName(text)}
+            />
+        </View>
+    }
+
+    function renderRegisterButton() {
+        return <TouchableOpacity style={styles.registerButton} onPress={async () => {
+            await register();
+        }}>
+            <Text style={styles.registerText}>{Lang.register.toUpperCase()}</Text>
+        </TouchableOpacity>
+    }
+
+    function renderGoLogin() {
+        return <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 16 }}>
+            <Text>{Lang.ihaveaccount}{" ,"}</Text>
+            <TouchableOpacity onPress={() => {
+                navigation.navigate(NavigationConstant.login)
+            }}>
+                <Text style={[styles.loginText, { color: AppColors.background, fontWeight: 'bold' }]}>{Lang.login}</Text>
+            </TouchableOpacity>
+        </View>
+    }
+
+    return (
+        <View style={styles.container}>
+            {renderLogo()}
+            {renderEmailTextField()}
+            {renderPasswordTextField()}
+            {renderNameTextField()}
+            {renderRegisterButton()}
+            <Text style={styles.or}>{Lang.or}</Text>
+            {renderGoLogin()}
+        </View>
+    );
+
     async function getRegisterUser() {
         const acc = await storage.get(CacheConstant.account)
         console.log("register", acc);
@@ -46,58 +116,6 @@ export default function RegisterView() {
             }, 250);
         }
     }
-
-    return (
-        <View style={styles.container}>
-            <Image style={styles.logo} source={require("../../../assets/logo.png")}
-            />
-            <View style={[styles.inputView, { marginTop: 32 }]}>
-                <TextInput
-                    style={styles.TextInput}
-                    placeholder={Lang.email}
-                    placeholderTextColor={AppColors.text}
-                    onChangeText={(email) => setEmail(email)}
-                />
-            </View>
-
-            <View style={styles.inputView}>
-                <TextInput
-                    style={styles.TextInput}
-                    placeholder={Lang.password}
-                    placeholderTextColor={AppColors.text}
-                    secureTextEntry={true}
-                    onChangeText={(password) => setPassword(password)}
-                />
-            </View>
-
-            <View style={styles.inputView}>
-                <TextInput
-                    style={styles.TextInput}
-                    placeholder={Lang.name}
-                    placeholderTextColor={AppColors.text}
-                    onChangeText={(text) => setName(text)}
-                />
-            </View>
-
-            <TouchableOpacity style={styles.registerButton} onPress={async () => {
-                await register();
-            }}>
-                <Text style={styles.registerText}>{Lang.register.toUpperCase()}</Text>
-            </TouchableOpacity>
-
-            <Text style={{ color: 'black', marginTop: 16 }}>{Lang.or}</Text>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 16 }}>
-                <Text>{Lang.ihaveaccount}{" ,"}</Text>
-                <TouchableOpacity onPress={() => {
-                    navigation.navigate(NavigationConstant.login)
-                }}>
-                    <Text style={[styles.loginText, { color: AppColors.background, fontWeight: 'bold' }]}>{Lang.login}</Text>
-                </TouchableOpacity>
-            </View>
-
-        </View>
-    );
 }
 
 const styles = StyleSheet.create({
@@ -107,7 +125,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
-
+    or :{ color: 'black', marginTop: 16 },
     logo: {
         width: 320,
         height: 220,

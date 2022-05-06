@@ -76,7 +76,7 @@ export default function LoginView() {
             {renderEmailTextField()}
             {renderPasswordTextField()}
             {renderLoginButton()}
-            <Text style={{ color: 'black', marginTop: 16 }}>{Lang.or}</Text>
+            <Text style={styles.or}>{Lang.or}</Text>
             {renderGoRegister()}
         </View>
     );
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
-
+    or: { color: 'black', marginTop: 16 },
     logo: {
         width: 320,
         height: 220,
