@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet,StatusBar } from "react-native";
 
 export const HomeStyle = StyleSheet.create({
     body: {
@@ -6,6 +6,7 @@ export const HomeStyle = StyleSheet.create({
         backgroundColor: AppColors.whiteText,
         paddingHorizontal: 16
     },
+    avatar :{ width: 20, height: 20 },
     topTitle: {
         marginTop: 48 + StatusBar.currentHeight,
         marginBottom: 16,

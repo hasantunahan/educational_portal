@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, StatusBar, FlatList, Image } from "react-native";
+import { View, Text, FlatList, Image } from "react-native";
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import Lang from '../../core/init/lang/en';
 import HomeMenuItem from "../../_product/component/molecules/home_menu_item";
@@ -10,28 +10,38 @@ import { HomeStyle } from './style';
 const HomeView = () => {
 
     const isFocus = useIsFocused()
+    const gridRowCount = 2;
     const navigation = useNavigation();
     const styles = HomeStyle
+    const avatarUrl = "https://cdn-icons-png.flaticon.com/512/219/219986.png"
+
+    function renderTopView() {
+        return <View style={styles.topView}>
+            <Text style={styles.topTitle}>{Lang.educational}</Text>
+            <View style={{ flexDirection: 'row' }}>
+                <Image style={styles.avatar} source={{ uri: avatarUrl }} />
+                <Text style={styles.welcomeText}>{Lang.welcome}{","}{AppSessions.name}</Text>
+            </View>
+        </View>
+    }
+
+    function renderMenuList() {
+        return <FlatList
+            data={HomeMenu}
+            numColumns={gridRowCount}
+            contentContainerStyle={styles.contentcontainer}
+            renderItem={({ item }) => {
+                return <HomeMenuItem onPress={() => {
+                    navigation.navigate(item.navigate)
+                }} text={item.name} icon={item.icon} />
+            }}
+        />
+    }
 
     return (
         <View style={styles.body}>
-            <View style={styles.topView}>
-                <Text style={styles.topTitle}>{Lang.educational}</Text>
-                <View style={{ flexDirection: 'row' }}>
-                    <Image style={{ width: 20, height: 20 }} source={{ uri: "https://cdn-icons-png.flaticon.com/512/219/219986.png" }} />
-                    <Text style={styles.welcomeText}>{Lang.welcome}{","}{AppSessions.name}</Text>
-                </View>
-            </View>
-            <FlatList
-                data={HomeMenu}
-                numColumns={2}
-                contentContainerStyle={styles.contentcontainer}
-                renderItem={({ item }) => {
-                    return <HomeMenuItem onPress={() => {
-                        navigation.navigate(item.navigate)
-                    }} text={item.name} icon={item.icon} />
-                }}
-            />
+            {renderTopView()}
+            {renderMenuList()}
         </View>
     );
 }
