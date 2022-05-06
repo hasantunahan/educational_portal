@@ -68,11 +68,14 @@ export default function LoginView() {
 
             <Text style={{ color: 'black', marginTop: 16 }}>{Lang.or}</Text>
 
-            <TouchableOpacity style={{ marginTop: 16 }} onPress={() => {
-                navigation.navigate(NavigationConstant.register)
-            }}>
-                <Text style={[styles.loginText, { color: AppColors.secondary }]}>{Lang.register}</Text>
-            </TouchableOpacity>
+            <View style={{flexDirection :'row',justifyContent: 'center', alignItems :'center',marginTop: 16 }}>
+                <Text>{Lang.idonthaveaccount}{" ,"}</Text>
+                <TouchableOpacity  onPress={() => {
+                    navigation.navigate(NavigationConstant.register)
+                }}>
+                    <Text style={[styles.loginText, { color: AppColors.background, fontWeight: 'bold' }]}>{Lang.register}</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }

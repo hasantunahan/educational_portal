@@ -87,11 +87,14 @@ export default function RegisterView() {
 
             <Text style={{ color: 'black', marginTop: 16 }}>{Lang.or}</Text>
 
-            <TouchableOpacity style={{ marginTop: 16 }} onPress={() => {
-                navigation.navigate(NavigationConstant.login)
-            }}>
-                <Text style={[styles.loginText, { color: AppColors.secondary }]}>{Lang.login}</Text>
-            </TouchableOpacity>
+            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 16 }}>
+                <Text>{Lang.ihaveaccount}{" ,"}</Text>
+                <TouchableOpacity onPress={() => {
+                    navigation.navigate(NavigationConstant.login)
+                }}>
+                    <Text style={[styles.loginText, { color: AppColors.background, fontWeight: 'bold' }]}>{Lang.login}</Text>
+                </TouchableOpacity>
+            </View>
 
         </View>
     );
