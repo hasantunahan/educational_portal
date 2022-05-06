@@ -5,6 +5,7 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import Lang from '../../core/init/lang/en';
 import HomeMenuItem from "../../_product/component/molecules/home_menu_item";
 import HomeMenu from './data/data';
+import { AppSessions } from '../../_product/session/session';
 
 const HomeView = () => {
 
@@ -15,19 +16,17 @@ const HomeView = () => {
     return (
         <View style={styles.body}>
             <Text style={styles.topTitle}>{Lang.educational}</Text>
+            <Text style={styles.welcomeText}>{Lang.welcome}{","}{AppSessions.name}</Text>
             <FlatList
                 data={HomeMenu}
                 numColumns={2}
-                contentContainerStyle={{
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
+                contentContainerStyle={styles.contentcontainer}
                 renderItem={({ item }) => {
-                    return <HomeMenuItem text={item.name} />
+                    return <HomeMenuItem onPress={()=>{
+                        navigation.navigate(item.navigate)
+                    }} text={item.name} icon={item.icon}/>
                 }}
             />
-
-
         </View>
     );
 
@@ -45,6 +44,18 @@ const styles = StyleSheet.create({
         marginBottom: 16,
         marginLeft: 4,
         fontSize: 24,
+        alignItems: 'center',
+        justifyContent: 'center',
+        letterSpacing: 1.2,
+        color: AppColors.secondary
+    },
+    contentcontainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    welcomeText :{
+        marginBottom: 16,
+        marginLeft: 4,
         alignItems: 'center',
         justifyContent: 'center',
         letterSpacing: 1.2,

@@ -6,5 +6,6 @@ export default Lang = {
     name: "Name",
     register : "Register",
     or : "or",
-    educational : "Educational Portal"
+    educational : "Educational Portal",
+    welcome : "Welcome"
 }
