@@ -20,12 +20,12 @@ const HomeMenuItem = ({ text, icon, onPress }) => {
 const styles = StyleSheet.create({
     body: {
         backgroundColor: AppColors.whiteText,
-        height: Dimensions.get('window').width * .44,
-        width: Dimensions.get('window').width * .44,
+        width: Dimensions.get('window').width * .9,
         alignItems: 'center',
-        justifyContent: 'center',
         borderRadius: 8,
         margin: 4,
+        padding: 8,
+        flexDirection: 'row',
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -37,12 +37,13 @@ const styles = StyleSheet.create({
     },
     text: {
         color: AppColors.background,
-        letterSpacing: 1.1
+        letterSpacing: 1.1,
+        marginLeft: 16,
+        fontWeight: '500'
     },
     logo: {
-        width: 75,
-        height: 75,
-        marginBottom: 12
+        width: 40,
+        height: 40,
     }
 });
 
