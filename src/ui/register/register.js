@@ -51,7 +51,7 @@ export default function RegisterView() {
         <View style={styles.container}>
             <Image style={styles.logo} source={require("../../../assets/logo.png")}
             />
-            <View style={[styles.inputView, { marginTop: -120 }]}>
+            <View style={[styles.inputView, { marginTop: 32 }]}>
                 <TextInput
                     style={styles.TextInput}
                     placeholder={Lang.email}
@@ -85,7 +85,7 @@ export default function RegisterView() {
                 <Text style={styles.registerText}>{Lang.register.toUpperCase()}</Text>
             </TouchableOpacity>
 
-            <Text style={{ color: 'white', marginTop: 16 }}>{Lang.or}</Text>
+            <Text style={{ color: 'black', marginTop: 16 }}>{Lang.or}</Text>
 
             <TouchableOpacity style={{ marginTop: 16 }} onPress={() => {
                 navigation.navigate(NavigationConstant.login)
@@ -100,13 +100,15 @@ export default function RegisterView() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: AppColors.background,
+        backgroundColor: AppColors.whiteText,
         alignItems: "center",
         justifyContent: "center",
     },
 
     logo: {
-        width: "80%",
+        width:320,
+        height:220,
+        resizeMode :'contain'
     },
 
     image: {

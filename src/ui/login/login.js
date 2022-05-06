@@ -39,9 +39,8 @@ export default function LoginView() {
 
     return (
         <View style={styles.container}>
-            <Image style={styles.logo} source={require("../../../assets/logo.png")}
-            />
-            <View style={[styles.inputView, { marginTop: -120 }]}>
+            <Image style={styles.logo} source={require("../../../assets/logo.png")} />
+            <View style={[styles.inputView, { marginTop: 32 }]}>
                 <TextInput
                     style={styles.TextInput}
                     placeholder={Lang.email}
@@ -67,7 +66,7 @@ export default function LoginView() {
                 <Text style={styles.loginText}>{Lang.login.toUpperCase()}</Text>
             </TouchableOpacity>
 
-            <Text style={{ color: 'white', marginTop: 16 }}>{Lang.or}</Text>
+            <Text style={{ color: 'black', marginTop: 16 }}>{Lang.or}</Text>
 
             <TouchableOpacity style={{ marginTop: 16 }} onPress={() => {
                 navigation.navigate(NavigationConstant.register)
@@ -81,13 +80,15 @@ export default function LoginView() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: AppColors.background,
+        backgroundColor: AppColors.whiteText,
         alignItems: "center",
         justifyContent: "center",
     },
 
     logo: {
-        width: "80%",
+        width: 320,
+        height: 220,
+        resizeMode: 'contain'
     },
 
     image: {
