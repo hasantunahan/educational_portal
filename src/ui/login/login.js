@@ -11,7 +11,7 @@ import {
     TouchableOpacity,
     StatusBar,
 } from "react-native";
-import { useNavigation, useIsFocused } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import NavigationConstant from '../../core/constant/navigation';
 import storage from "../../core/init/storage/storage";
 import CacheConstant from '../../core/constant/cache';
@@ -21,7 +21,65 @@ export default function LoginView() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigation = useNavigation();
-    const isFocus = useIsFocused();
+
+    function renderLogo() {
+        return (
+            <Image style={styles.logo} source={require("../../../assets/logo.png")} />
+        )
+    }
+
+    function renderEmailTextField() {
+        return <View style={[styles.inputView, { marginTop: 32 }]}>
+            <TextInput
+                style={styles.TextInput}
+                placeholder={Lang.email}
+                placeholderTextColor={AppColors.text}
+                onChangeText={(email) => setEmail(email)}
+            />
+        </View>
+    }
+
+    function renderPasswordTextField() {
+        return <View style={styles.inputView}>
+            <TextInput
+                style={styles.TextInput}
+                placeholder={Lang.password}
+                placeholderTextColor={AppColors.text}
+                secureTextEntry={true}
+                onChangeText={(password) => setPassword(password)}
+            />
+        </View>
+    }
+
+    function renderLoginButton() {
+        return <TouchableOpacity style={styles.loginBtn} onPress={async () => {
+            await loginUser()
+        }}>
+            <Text style={styles.loginText}>{Lang.login.toUpperCase()}</Text>
+        </TouchableOpacity>
+    }
+
+    function renderGoRegister() {
+        return <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 16 }}>
+            <Text>{Lang.idonthaveaccount}{" ,"}</Text>
+            <TouchableOpacity onPress={() => {
+                navigation.navigate(NavigationConstant.register)
+            }}>
+                <Text style={[styles.loginText, { color: AppColors.background, fontWeight: 'bold' }]}>{Lang.register}</Text>
+            </TouchableOpacity>
+        </View>
+    }
+
+    return (
+        <View style={styles.container}>
+            {renderLogo()}
+            {renderEmailTextField()}
+            {renderPasswordTextField()}
+            {renderLoginButton()}
+            <Text style={{ color: 'black', marginTop: 16 }}>{Lang.or}</Text>
+            {renderGoRegister()}
+        </View>
+    );
 
     async function loginUser() {
         const acc = await storage.get(CacheConstant.account)
@@ -37,47 +95,6 @@ export default function LoginView() {
         }
     }
 
-    return (
-        <View style={styles.container}>
-            <Image style={styles.logo} source={require("../../../assets/logo.png")} />
-            <View style={[styles.inputView, { marginTop: 32 }]}>
-                <TextInput
-                    style={styles.TextInput}
-                    placeholder={Lang.email}
-                    placeholderTextColor={AppColors.text}
-                    onChangeText={(email) => setEmail(email)}
-                />
-            </View>
-
-            <View style={styles.inputView}>
-                <TextInput
-                    style={styles.TextInput}
-                    placeholder={Lang.password}
-                    placeholderTextColor={AppColors.text}
-                    secureTextEntry={true}
-                    onChangeText={(password) => setPassword(password)}
-                />
-            </View>
-
-
-            <TouchableOpacity style={styles.loginBtn} onPress={async () => {
-                await loginUser()
-            }}>
-                <Text style={styles.loginText}>{Lang.login.toUpperCase()}</Text>
-            </TouchableOpacity>
-
-            <Text style={{ color: 'black', marginTop: 16 }}>{Lang.or}</Text>
-
-            <View style={{flexDirection :'row',justifyContent: 'center', alignItems :'center',marginTop: 16 }}>
-                <Text>{Lang.idonthaveaccount}{" ,"}</Text>
-                <TouchableOpacity  onPress={() => {
-                    navigation.navigate(NavigationConstant.register)
-                }}>
-                    <Text style={[styles.loginText, { color: AppColors.background, fontWeight: 'bold' }]}>{Lang.register}</Text>
-                </TouchableOpacity>
-            </View>
-        </View>
-    );
 }
 
 const styles = StyleSheet.create({
