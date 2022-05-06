@@ -8,6 +8,7 @@ import HomeView from '../../../ui/home/home';
 import StudentAddView from '../../../ui/_home/student_add/student_add';
 import StudentListView from '../../../ui/_home/student_list/student_list';
 import StudentSurvey from '../../../ui/_home/student_survey/student_survey';
+import AppColors from '../theme/colors';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,7 +25,11 @@ export default function Routes() {
                 <Stack.Screen options={{
                     headerShown: false
                 }} name={NavigationConstant.home} component={HomeView} />
-                <Stack.Screen name={NavigationConstant.student_add} component={StudentAddView} />
+                <Stack.Screen options={{
+                    headerStyle :{
+                        backgroundColor : AppColors.whiteText
+                    }
+                }} name={NavigationConstant.student_add} component={StudentAddView} />
                 <Stack.Screen name={NavigationConstant.student_list} component={StudentListView} />
                 <Stack.Screen name={NavigationConstant.student_survey} component={StudentSurvey} />
             </Stack.Navigator>

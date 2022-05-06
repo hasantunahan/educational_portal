@@ -1,11 +1,20 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, StyleSheet, StatusBar } from "react-native";
+import AppColors from '../../../core/init/theme/colors';
+
 const StudentAddView = () => {
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={styles.body}>
             <Text>Addd</Text>
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    body : {
+        flex : 1,
+        backgroundColor : AppColors.whiteText,
+    }
+})
 
 export default StudentAddView;
