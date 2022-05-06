@@ -1,4 +1,5 @@
 export default NavigationConstant = {
+    splash: "Splash",
     login: "Login",
     register: "Register",
     home: "Home",
