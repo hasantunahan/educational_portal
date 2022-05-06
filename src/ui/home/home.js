@@ -6,12 +6,13 @@ import Lang from '../../core/init/lang/en';
 import HomeMenuItem from "../../_product/component/molecules/home_menu_item";
 import HomeMenu from './data/data';
 import { AppSessions } from '../../_product/session/session';
+import { HomeStyle } from './style';
 
 const HomeView = () => {
 
     const isFocus = useIsFocused()
     const navigation = useNavigation();
-
+    const styles = HomeStyle
 
     return (
         <View style={styles.body}>
@@ -34,45 +35,7 @@ const HomeView = () => {
             />
         </View>
     );
-
-
 }
 
-const styles = StyleSheet.create({
-    body: {
-        flex: 1,
-        backgroundColor: AppColors.whiteText,
-        paddingHorizontal: 16
-    },
-    topTitle: {
-        marginTop: 48 + StatusBar.currentHeight,
-        marginBottom: 16,
-        marginLeft: 4,
-        fontSize: 24,
-        alignItems: 'center',
-        justifyContent: 'center',
-        letterSpacing: 1.2,
-        color: AppColors.secondary
-    },
-    contentcontainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    welcomeText: {
-        marginBottom: 16,
-        marginLeft: 4,
-        alignItems: 'center',
-        justifyContent: 'center',
-        letterSpacing: 1.2,
-        color: AppColors.whiteText
-    },
-    topView: {
-        backgroundColor: AppColors.background,
-        marginHorizontal: -16,
-        paddingVertical: 16,
-        marginBottom: 16,
-        paddingHorizontal: 16
-    }
-})
 
 export default HomeView;

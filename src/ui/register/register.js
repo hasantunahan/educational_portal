@@ -4,7 +4,6 @@ import Lang from '../../core/init/lang/en';
 import AppColors from '../../core/init/theme/colors';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import {
-    StyleSheet,
     Text,
     View,
     Image,
@@ -15,7 +14,7 @@ import storage from "../../core/init/storage/storage";
 import CacheConstant from '../../core/constant/cache';
 import NavigationConstant from '../../core/constant/navigation';
 import uuid from 'react-native-uuid';
-import { AppSessions } from '../../_product/session/session';
+import { RegisterStyle } from './style';
 
 export default function RegisterView() {
     const [email, setEmail] = useState("");
@@ -23,6 +22,7 @@ export default function RegisterView() {
     const [name, setName] = React.useState("");
     const navigation = useNavigation();
     const isFocus = useIsFocused()
+    const styles = RegisterStyle
 
     React.useEffect(() => {
         getRegisterUser();
@@ -117,55 +117,3 @@ export default function RegisterView() {
         }
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: AppColors.whiteText,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    or :{ color: 'black', marginTop: 16 },
-    logo: {
-        width: 320,
-        height: 220,
-        resizeMode: 'contain'
-    },
-
-    image: {
-        marginBottom: 10,
-    },
-
-    inputView: {
-        backgroundColor: AppColors.secondary,
-        borderRadius: 8,
-        width: "88%",
-        height: "5%",
-        marginBottom: "5%",
-    },
-
-    TextInput: {
-        height: 44,
-        flex: 1,
-        padding: 10,
-        marginLeft: 2,
-    },
-
-    forgot_button: {
-        height: "10%",
-        marginBottom: "20%",
-    },
-
-    registerText: {
-        color: AppColors.whiteText,
-    },
-
-    registerButton: {
-        width: "88%",
-        borderRadius: 8,
-        height: "4%",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: AppColors.button,
-    },
-});

@@ -3,24 +3,24 @@ import React, { useState } from "react";
 import Lang from '../../core/init/lang/en';
 import AppColors from '../../core/init/theme/colors';
 import {
-    StyleSheet,
     Text,
     View,
     Image,
     TextInput,
     TouchableOpacity,
-    StatusBar,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import NavigationConstant from '../../core/constant/navigation';
 import storage from "../../core/init/storage/storage";
 import CacheConstant from '../../core/constant/cache';
 import { AppSessions } from "../../_product/session/session";
+import { LoginStyle } from './style';
 
-export default function LoginView() {
+const LoginView = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigation = useNavigation();
+    const styles = LoginStyle
 
     function renderLogo() {
         return (
@@ -96,55 +96,4 @@ export default function LoginView() {
     }
 
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: AppColors.whiteText,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    or: { color: 'black', marginTop: 16 },
-    logo: {
-        width: 320,
-        height: 220,
-        resizeMode: 'contain'
-    },
-
-    image: {
-        marginBottom: 10,
-    },
-
-    inputView: {
-        backgroundColor: AppColors.secondary,
-        borderRadius: 8,
-        width: "88%",
-        height: "5%",
-        marginBottom: "5%",
-    },
-
-    TextInput: {
-        height: 44,
-        flex: 1,
-        padding: 10,
-        marginLeft: 2,
-    },
-
-    forgot_button: {
-        height: "10%",
-        marginBottom: "20%",
-    },
-
-    loginText: {
-        color: AppColors.whiteText,
-    },
-
-    loginBtn: {
-        width: "88%",
-        borderRadius: 8,
-        height: "4%",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: AppColors.button,
-    },
-});
+export default LoginView;
