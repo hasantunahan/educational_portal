@@ -14,7 +14,7 @@ export default HomeMenu = [
         icon: "https://cdn.pixabay.com/photo/2017/06/10/07/18/list-2389219_1280.png"
     },
     {
-        id: 2,
+        id: 3,
         name: "Student Survey",
         navigate: NavigationConstant.student_survey,
         icon: "https://cdn-icons-png.flaticon.com/512/1169/1169549.png"

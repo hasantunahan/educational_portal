@@ -9,5 +9,11 @@ export default Lang = {
     educational: "Educational Portal",
     welcome: "Welcome",
     ihaveaccount: "I have account",
-    idonthaveaccount: "I dont have account"
+    idonthaveaccount: "I dont have account",
+    form_student_add: "Add Student Form",
+    please_all_area_required: "Please, fill in all field",
+    school_no: "School No",
+    tckn: "Tckn",
+    phone_number: "Phone Number",
+    save: "Save"
 }
