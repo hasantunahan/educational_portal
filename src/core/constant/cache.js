@@ -1,3 +1,4 @@
 export default CacheConstant = {
-    account : "Account"
+    account : "Account",
+    student_list : "StudentList"
 }

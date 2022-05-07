@@ -15,5 +15,6 @@ export default Lang = {
     school_no: "School No",
     tckn: "Tckn",
     phone_number: "Phone Number",
-    save: "Save"
+    save: "Save",
+    chooseTeacher: "Choose Teacher"
 }
