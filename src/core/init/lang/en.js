@@ -19,5 +19,7 @@ export default Lang = {
     chooseTeacher: "Choose Teacher",
     account_or_password_wrong: "Account or password wrong",
     successful: " transaction successful",
-    list_empty : "List Empty"
+    list_empty: "List Empty",
+    survey_not_fill: "Survey did not filled",
+    survey_see: "See survey"
 }

@@ -27,7 +27,6 @@ const StudentAddView = () => {
     React.useEffect(() => {
         getUserList();
         getStudentLis();
-        //storage.remove(CacheConstant.student_list);
     }, [isFocus])
 
     async function getUserList() {
@@ -58,25 +57,26 @@ const StudentAddView = () => {
                     console.log("error set new students");
                 }
             } else {
-                Array.from(students).map((item) => {
-                    if (item.tckn !== tckn) {
-                        list.push({
-                            id: uuid.v4(),
-                            name: name,
-                            phoneNumber: phonenumber,
-                            schoolNo: schoolno,
-                            tckn: tckn,
-                            selectedTeacher: selectedTeacher,
-                            survey: null
-                        });
-                        storage.set(CacheConstant.student_list, list)
-                        navigation.goBack();
-                        return;
-                    } else {
-                        console.log("students already exits");
-                        return;
-                    }
-                })
+                let isHave = Array.from(students).filter((item) => item.tckn == tckn);
+                console.log(typeof (isHave));
+                if (isHave.length == 0) {
+                    list.push({
+                        id: uuid.v4(),
+                        name: name,
+                        phoneNumber: phonenumber,
+                        schoolNo: schoolno,
+                        tckn: tckn,
+                        selectedTeacher: selectedTeacher,
+                        survey: null
+                    });
+                    storage.set(CacheConstant.student_list, list)
+                    navigation.goBack();
+                } else {
+                    Toast.show({
+                        type: 'error',
+                        text1: "Student already exits"
+                    });
+                }
             }
 
         } else {

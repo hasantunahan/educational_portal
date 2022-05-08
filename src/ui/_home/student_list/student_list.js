@@ -1,10 +1,11 @@
 import React from "react";
-import { ActivityIndicator, Text, View } from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
 import { useIsFocused } from '@react-navigation/native';
 import storage from "../../../core/init/storage/storage";
 import CacheConstant from '../../../core/constant/cache';
 import AppColors from '../../../core/init/theme/colors';
 import Lang from '../../../core/init/lang/en';
+import StudentItems from "../../../_product/component/molecules/student_item";
 const StudentListView = () => {
     const isFocus = useIsFocused();
     const [studentList, setStudentList] = React.useState(null);
@@ -23,15 +24,27 @@ const StudentListView = () => {
     }
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={styles.body}>
             {
                 studentList != null ?
-                    studentList?.map((item, index) => {
-                        return <Text key={index}>{item.tckn}</Text>
-                    }) : <Text>{Lang.list_empty}</Text>
+                    <FlatList
+                        data={studentList.sort((a, b) => parseInt(a) > parseInt(b))}
+                        renderItem={({ item }) => {
+                            return <StudentItems data={item} />
+                        }}
+                    /> : <Text>{Lang.list_empty}</Text>
             }
         </View>
     );
 }
 
+
+const styles = StyleSheet.create({
+    body: {
+        flex: 1,
+        alignItems: 'center',
+        paddingHorizontal: 16,
+        marginTop: 12
+    }
+})
 export default StudentListView;
