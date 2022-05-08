@@ -101,8 +101,11 @@ const LoginView = () => {
                     navigation.navigate(NavigationConstant.home)
                     AppSessions.email = email;
                     AppSessions.perm = 1;
+                    AppSessions.name = item.name;
+                    AppSessions.userId = item.id;
+                    AppSessions.tckn = item.tckn;
                     return;
-                }else{
+                } else {
                     Toast.show({
                         type: 'error',
                         text1: Lang.account_or_password_wrong
