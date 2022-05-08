@@ -100,8 +100,10 @@ const StudentLoginView = () => {
             Array.from(users).filter((item) => {
                 if (item.tckn == tckn && item.password == password) {
                     navigation.navigate(NavigationConstant.home)
-                    AppSessions.tckn = tckn;
                     AppSessions.perm = 2;
+                    AppSessions.name = item.name;
+                    AppSessions.userId = item.id;
+                    AppSessions.tckn = item.tckn;
                     return;
                 }
             })
