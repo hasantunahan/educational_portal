@@ -90,7 +90,8 @@ const LoginView = () => {
             Array.from(users).filter((item) => {
                 if (item.email == email && item.password == password) {
                     navigation.navigate(NavigationConstant.home)
-                    AppSessions.name = email;
+                    AppSessions.email = email;
+                    AppSessions.perm = 1;
                     return;
                 }
             })

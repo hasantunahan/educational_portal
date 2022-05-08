@@ -6,6 +6,7 @@ import HomeMenuItem from "../../_product/component/molecules/home_menu_item";
 import HomeMenu from './data/data';
 import { AppSessions } from '../../_product/session/session';
 import { HomeStyle } from './style';
+import App from '../../../App';
 
 const HomeView = () => {
 
@@ -21,7 +22,7 @@ const HomeView = () => {
             <Text style={styles.topTitle}>{Lang.educational}</Text>
             <View style={{ flexDirection: 'row' }}>
                 <Image style={styles.avatar} source={{ uri: avatarUrl }} />
-                <Text style={styles.welcomeText}>{Lang.welcome}{","}{AppSessions.name}</Text>
+                <Text style={styles.welcomeText}>{Lang.welcome}{","}{AppSessions.email}</Text>
             </View>
         </View>
     }
@@ -31,7 +32,7 @@ const HomeView = () => {
             data={HomeMenu}
             contentContainerStyle={styles.contentcontainer}
             renderItem={({ item }) => {
-                return <HomeMenuItem onPress={() => {
+                return item.perm == AppSessions.perm && <HomeMenuItem onPress={() => {
                     navigation.navigate(item.navigate)
                 }} text={item.name} icon={item.icon} />
             }}
@@ -40,7 +41,7 @@ const HomeView = () => {
 
     function renderDescriptionView() {
         return <Text style={styles.descriptionText}>
-           {descriptionText}
+            {descriptionText}
         </Text>
     }
 
