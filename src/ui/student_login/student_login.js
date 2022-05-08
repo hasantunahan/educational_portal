@@ -14,11 +14,11 @@ import NavigationConstant from '../../core/constant/navigation';
 import storage from "../../core/init/storage/storage";
 import CacheConstant from '../../core/constant/cache';
 import { AppSessions } from "../../_product/session/session";
-import { LoginStyle } from './style';
 import Toast from 'react-native-toast-message'
+import { LoginStyle } from '../login/style';
 
-const LoginView = () => {
-    const [email, setEmail] = useState("");
+const StudentLoginView = () => {
+    const [tckn, setTckn] = useState("");
     const [password, setPassword] = useState("");
     const navigation = useNavigation();
     const styles = LoginStyle
@@ -29,13 +29,13 @@ const LoginView = () => {
         )
     }
 
-    function renderEmailTextField() {
+    function renderTcknTextField() {
         return <View style={[styles.inputView, { marginTop: 32 }]}>
             <TextInput
                 style={styles.TextInput}
-                placeholder={Lang.email}
+                placeholder={Lang.tckn}
                 placeholderTextColor={AppColors.text}
-                onChangeText={(email) => setEmail(email)}
+                onChangeText={(tc) => setTckn(tc)}
             />
         </View>
     }
@@ -73,16 +73,16 @@ const LoginView = () => {
 
     function renderChangeLogin() {
         return <TouchableOpacity style={{ marginVertical: 12 }} onPress={() => {
-            navigation.navigate(NavigationConstant.student_login)
+            navigation.navigate(NavigationConstant.login)
         }}>
-            <Text style={[styles.loginText, { color: AppColors.background, fontWeight: 'bold' }]}>{Lang.student_login}</Text>
+            <Text style={[styles.loginText, { color: AppColors.background, fontWeight: 'bold' }]}>{Lang.teacher_login}</Text>
         </TouchableOpacity>
     }
 
     return (
         <View style={styles.container}>
             {renderLogo()}
-            {renderEmailTextField()}
+            {renderTcknTextField()}
             {renderPasswordTextField()}
             {renderLoginButton()}
             <Text style={styles.or}>{Lang.or}</Text>
@@ -93,20 +93,16 @@ const LoginView = () => {
     );
 
     async function loginUser() {
-        const acc = await storage.get(CacheConstant.account)
+        const acc = await storage.get(CacheConstant.student_list)
+        console.log(acc);
         let users = acc ?? [];
-        if (email != "" && password != "") {
+        if (tckn != "" && password != "") {
             Array.from(users).filter((item) => {
-                if (item.email == email && item.password == password) {
+                if (item.tckn == tckn && item.password == password) {
                     navigation.navigate(NavigationConstant.home)
-                    AppSessions.email = email;
-                    AppSessions.perm = 1;
+                    AppSessions.tckn = tckn;
+                    AppSessions.perm = 2;
                     return;
-                }else{
-                    Toast.show({
-                        type: 'error',
-                        text1: Lang.account_or_password_wrong
-                    })
                 }
             })
         } else {
@@ -118,4 +114,4 @@ const LoginView = () => {
     }
 
 }
-export default LoginView;
+export default StudentLoginView;

@@ -12,17 +12,22 @@ const HomeView = () => {
 
     const isFocus = useIsFocused()
     const gridRowCount = 2;
+    const [perm, setPerm] = React.useState(1);
     const navigation = useNavigation();
     const styles = HomeStyle
     const avatarUrl = "https://cdn-icons-png.flaticon.com/512/219/219986.png"
     const descriptionText = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,";
+
+    React.useEffect(() => {
+        setPerm(AppSessions.perm)
+    })
 
     function renderTopView() {
         return <View style={styles.topView}>
             <Text style={styles.topTitle}>{Lang.educational}</Text>
             <View style={{ flexDirection: 'row' }}>
                 <Image style={styles.avatar} source={{ uri: avatarUrl }} />
-                <Text style={styles.welcomeText}>{Lang.welcome}{","}{AppSessions.email}</Text>
+                <Text style={styles.welcomeText}>{Lang.welcome}</Text>
             </View>
         </View>
     }
@@ -32,7 +37,7 @@ const HomeView = () => {
             data={HomeMenu}
             contentContainerStyle={styles.contentcontainer}
             renderItem={({ item }) => {
-                return item.perm == AppSessions.perm && <HomeMenuItem onPress={() => {
+                return item.perm == perm && <HomeMenuItem onPress={() => {
                     navigation.navigate(item.navigate)
                 }} text={item.name} icon={item.icon} />
             }}
@@ -49,7 +54,7 @@ const HomeView = () => {
     return (
         <View style={styles.body}>
             {renderTopView()}
-            {renderDescriptionView()}
+            {perm === 1 && renderDescriptionView()}
             {renderMenuList()}
         </View>
     );

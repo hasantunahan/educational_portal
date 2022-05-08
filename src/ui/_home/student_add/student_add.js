@@ -47,6 +47,7 @@ const StudentAddView = () => {
                     phoneNumber: phonenumber.trim(),
                     schoolNo: schoolno.trim(),
                     tckn: tckn.trim(),
+                    password: password.trim(),
                     selectedTeacher: selectedTeacher,
                     survey: null
                 });
@@ -62,10 +63,11 @@ const StudentAddView = () => {
                 if (isHave.length == 0) {
                     list.push({
                         id: uuid.v4(),
-                        name: name,
-                        phoneNumber: phonenumber,
-                        schoolNo: schoolno,
-                        tckn: tckn,
+                        name: name.trim(),
+                        phoneNumber: phonenumber.trim(),
+                        schoolNo: schoolno.trim(),
+                        tckn: tckn.trim(),
+                        password: password.trim(),
                         selectedTeacher: selectedTeacher,
                         survey: null
                     });

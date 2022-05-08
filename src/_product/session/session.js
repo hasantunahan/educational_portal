@@ -3,4 +3,5 @@ export class AppSessions {
     static email = "";
     static userId = "";
     static perm = 1;
+    static tckn = "";
 }

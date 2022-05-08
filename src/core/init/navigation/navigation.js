@@ -10,6 +10,7 @@ import StudentListView from '../../../ui/_home/student_list/student_list';
 import StudentSurvey from '../../../ui/_home/student_survey/student_survey';
 import AppColors from '../theme/colors';
 import SplashView from '../../../ui/splash/splash';
+import StudentLoginView from '../../../ui/student_login/student_login';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,9 @@ export default function Routes() {
                 <Stack.Screen options={{
                     headerShown: false
                 }} name={NavigationConstant.login} component={LoginView} />
+                <Stack.Screen options={{
+                    headerShown: false
+                }} name={NavigationConstant.student_login} component={StudentLoginView} />
                 <Stack.Screen options={{
                     headerShown: false
                 }} name={NavigationConstant.register} component={RegisterView} />

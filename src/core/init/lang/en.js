@@ -21,5 +21,7 @@ export default Lang = {
     successful: " transaction successful",
     list_empty: "List Empty",
     survey_not_fill: "Survey did not filled",
-    survey_see: "See survey"
+    survey_see: "See survey",
+    student_login : "Student login",
+    teacher_login : "Teacher login"
 }

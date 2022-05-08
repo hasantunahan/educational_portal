@@ -5,5 +5,6 @@ export default NavigationConstant = {
     home: "Home",
     student_add: "StudentAdd",
     student_list: "StudentList",
-    student_survey: "StudentSurvey"
-}
+    student_survey: "StudentSurvey",
+    student_login : "Student Login"
+ }
