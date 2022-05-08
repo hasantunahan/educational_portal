@@ -15,6 +15,7 @@ import CacheConstant from '../../core/constant/cache';
 import NavigationConstant from '../../core/constant/navigation';
 import uuid from 'react-native-uuid';
 import { RegisterStyle } from './style';
+import Toast from 'react-native-toast-message'
 
 export default function RegisterView() {
     const [email, setEmail] = useState("");
@@ -95,6 +96,7 @@ export default function RegisterView() {
             {renderRegisterButton()}
             <Text style={styles.or}>{Lang.or}</Text>
             {renderGoLogin()}
+            <Toast position="bottom" />
         </View>
     );
 
@@ -111,9 +113,18 @@ export default function RegisterView() {
             list.push({ email: email, password: password, name: name, id: uuid.v4() })
             await storage.set(CacheConstant.account, list);
             console.log("list", list);
+            Toast.show({
+                type: 'success',
+                text1: Lang.successful
+            });
             setTimeout(() => {
                 navigation.navigate(NavigationConstant.login);
-            }, 250);
+            }, 500);
+        }else{
+            Toast.show({
+                type: 'error',
+                text1: Lang.please_all_area_required
+            });
         }
     }
 }

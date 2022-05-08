@@ -16,5 +16,8 @@ export default Lang = {
     tckn: "Tckn",
     phone_number: "Phone Number",
     save: "Save",
-    chooseTeacher: "Choose Teacher"
+    chooseTeacher: "Choose Teacher",
+    account_or_password_wrong: "Account or password wrong",
+    successful: " transaction successful",
+    list_empty : "List Empty"
 }

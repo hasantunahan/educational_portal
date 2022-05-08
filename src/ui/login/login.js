@@ -15,6 +15,7 @@ import storage from "../../core/init/storage/storage";
 import CacheConstant from '../../core/constant/cache';
 import { AppSessions } from "../../_product/session/session";
 import { LoginStyle } from './style';
+import Toast from 'react-native-toast-message'
 
 const LoginView = () => {
     const [email, setEmail] = useState("");
@@ -78,6 +79,7 @@ const LoginView = () => {
             {renderLoginButton()}
             <Text style={styles.or}>{Lang.or}</Text>
             {renderGoRegister()}
+            <Toast position="bottom" />
         </View>
     );
 
@@ -91,6 +93,11 @@ const LoginView = () => {
                     AppSessions.name = email;
                     return;
                 }
+            })
+        } else {
+            Toast.show({
+                type: 'error',
+                text1: Lang.account_or_password_wrong
             })
         }
     }
