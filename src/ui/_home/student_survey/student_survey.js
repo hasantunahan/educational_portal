@@ -3,11 +3,12 @@ import { Text, View, TextInput, StyleSheet } from "react-native";
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import storage from "../../../core/init/storage/storage";
 import CacheConstant from '../../../core/constant/cache';
-import { AppSessions } from '../../../_product/session/session';
 import DefaultButton from "../../../_product/component/atom/button";
 import Lang from '../../../core/init/lang/en';
 
-const StudentSurvey = () => {
+const StudentSurvey = (props) => {
+    const {route} = props;
+    const {params } = route;
     const navigation = useNavigation();
     const isFocus = useIsFocused();
     const [userData, setUserData] = React.useState(null);
@@ -15,12 +16,13 @@ const StudentSurvey = () => {
 
     React.useEffect(() => {
         getStudentSurvey();
+        console.log("params :::",params);
     }, [isFocus])
 
     async function getStudentSurvey() {
         let studentList = await storage.get(CacheConstant.student_list);
         Array.from(studentList).map((item) => {
-            if (item.id == AppSessions.userId) {
+            if (item.id == params.student_id) {
                 if (item.survey != null) {
                     setUserData(item.survey)
                     console.log("userData",userData);
@@ -33,8 +35,8 @@ const StudentSurvey = () => {
 
     async function updateSurvey() {
         let studentList = await storage.get(CacheConstant.student_list);
-        let list = Array.from(studentList).filter((item) => item.id != AppSessions.userId);
-        let user = Array.from(studentList).find((item) => item.id == AppSessions.userId);
+        let list = Array.from(studentList).filter((item) => item.id != params.student_id);
+        let user = Array.from(studentList).find((item) => item.id == params.student_id);
         let updateUser = {
             "id": user.id,
             "name": user.name,

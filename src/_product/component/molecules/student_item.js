@@ -5,12 +5,10 @@ import Lang from '../../../core/init/lang/en';
 
 
 const StudentItems = ({ data, onPress, onPressSurvey }) => {
-    const [thanMore, setThanMore] = React.useState(false)
+    const [thanMore, setThanMore] = React.useState(true)
 
     return (
-        <TouchableOpacity onPress={() => {
-            setThanMore(!thanMore)
-        }} style={styles.body}>
+        <TouchableOpacity onPress={onPress} style={styles.body}>
             <View style={styles.row}>
                 <Image style={styles.logo} source={{ uri: "https://cdn.pixabay.com/photo/2016/11/08/15/21/user-1808597_960_720.png" }} />
                 <Text style={styles.text}>{data.name}</Text>

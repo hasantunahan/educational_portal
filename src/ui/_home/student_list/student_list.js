@@ -1,13 +1,15 @@
 import React from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
-import { useIsFocused } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import storage from "../../../core/init/storage/storage";
 import CacheConstant from '../../../core/constant/cache';
 import AppColors from '../../../core/init/theme/colors';
 import Lang from '../../../core/init/lang/en';
 import StudentItems from "../../../_product/component/molecules/student_item";
+import NavigationConstant from '../../../core/constant/navigation';
 const StudentListView = () => {
     const isFocus = useIsFocused();
+    const navigation = useNavigation();
     const [studentList, setStudentList] = React.useState(null);
     const [isLoading, setLoading] = React.useState(false);
 
@@ -30,7 +32,11 @@ const StudentListView = () => {
                     <FlatList
                         data={studentList.sort((a, b) => parseInt(a) > parseInt(b))}
                         renderItem={({ item }) => {
-                            return <StudentItems data={item} />
+                            return <StudentItems onPress={() => {
+                                navigation.navigate(NavigationConstant.student_survey, {
+                                    student_id: item.id
+                                })
+                            }} data={item} />
                         }}
                     /> : <Text>{Lang.list_empty}</Text>
             }

@@ -87,7 +87,7 @@ const LoginView = () => {
             {renderLoginButton()}
             <Text style={styles.or}>{Lang.or}</Text>
             {renderGoRegister()}
-            {renderChangeLogin()}
+            {/* {renderChangeLogin()} */}
             <Toast position="bottom" />
         </View>
     );
