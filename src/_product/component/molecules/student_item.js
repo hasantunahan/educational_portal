@@ -1,10 +1,10 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Image, Button } from 'react-native';
 import AppColors from '../../../core/init/theme/colors';
 import Lang from '../../../core/init/lang/en';
 
 
-const StudentItems = ({ data, onPress, onPressSurvey }) => {
+const StudentItems = ({ data, onPress, onPressSurvey, testOnPress }) => {
     const [thanMore, setThanMore] = React.useState(true)
 
     return (
@@ -19,7 +19,7 @@ const StudentItems = ({ data, onPress, onPressSurvey }) => {
                     <Text style={styles.subtitle}>{Lang.school_no}{" : "}{data.schoolNo}</Text>
                     <Text style={styles.subtitle}>{Lang.phone_number}{" : "}{data.phoneNumber}</Text>
                     <Text style={styles.subtitle}>{"Teacher "}{" : "}{data.selectedTeacher?.name}</Text>
-                    {data.surver == null ? <Text style={{ color: 'red' }}>
+                    {data.survey == null ? <Text style={{ color: 'red' }}>
                         {Lang.survey_not_fill}
                     </Text> : <TouchableOpacity onPress={onPressSurvey}>
                         <Text style={{ color: 'blue', marginVertical: 4 }}>{Lang.survey_see}</Text>
@@ -27,6 +27,9 @@ const StudentItems = ({ data, onPress, onPressSurvey }) => {
                     }
                 </View>
             }
+            <TouchableOpacity onPress={testOnPress} style={styles.test_button}>
+                <Text >{"Student Information Test"}</Text>
+            </TouchableOpacity>
         </TouchableOpacity>
     );
 
@@ -65,6 +68,13 @@ const styles = StyleSheet.create({
         fontSize: 18,
         letterSpacing: 0.25,
         marginLeft: 8
+    },
+    test_button: {
+        marginVertical: 8,
+        padding: 8,
+        alignItems: 'center',
+        backgroundColor: AppColors.secondary,
+        borderRadius: 8
     }
 });
 

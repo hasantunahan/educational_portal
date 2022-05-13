@@ -11,6 +11,7 @@ import StudentSurvey from '../../../ui/_home/student_survey/student_survey';
 import AppColors from '../theme/colors';
 import SplashView from '../../../ui/splash/splash';
 import StudentLoginView from '../../../ui/student_login/student_login';
+import StundentTestView from '../../../ui/_home/student_test/student_test';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,6 +41,7 @@ export default function Routes() {
                 }} name={NavigationConstant.student_add} component={StudentAddView} />
                 <Stack.Screen name={NavigationConstant.student_list} component={StudentListView} />
                 <Stack.Screen name={NavigationConstant.student_survey} component={StudentSurvey} />
+                <Stack.Screen name={NavigationConstant.student_test} component={StundentTestView} />
             </Stack.Navigator>
         </NavigationContainer>
     );

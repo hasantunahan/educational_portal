@@ -49,7 +49,8 @@ const StudentAddView = () => {
                     tckn: tckn.trim(),
                     password: password.trim(),
                     selectedTeacher: selectedTeacher,
-                    survey: null
+                    survey: null,
+                    test : null
                 });
                 try {
                     await storage.set(CacheConstant.student_list, list);
@@ -69,7 +70,8 @@ const StudentAddView = () => {
                         tckn: tckn.trim(),
                         password: password.trim(),
                         selectedTeacher: selectedTeacher,
-                        survey: null
+                        survey: null,
+                        test : null
                     });
                     storage.set(CacheConstant.student_list, list)
                     navigation.goBack();
