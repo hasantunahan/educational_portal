@@ -80,6 +80,7 @@ const StudentSurvey = (props) => {
                 "sisterCount": sisterorbrothercount,
             },
             "tckn": user.tckn,
+            "test" : user.test
         }
         await storage.remove(CacheConstant.student_list);
         list.push(updateUser)
