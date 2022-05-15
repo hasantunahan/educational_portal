@@ -49,7 +49,7 @@ const StudentAddView = () => {
                     phoneNumber: phonenumber.trim(),
                     schoolNo: schoolno.trim(),
                     tckn: tckn.trim(),
-                    password: password.trim(),
+                    password: "password.trim()",
                     selectedTeacher: teacher,
                     survey: null,
                     test: null
@@ -70,7 +70,7 @@ const StudentAddView = () => {
                         phoneNumber: phonenumber.trim(),
                         schoolNo: schoolno.trim(),
                         tckn: tckn.trim(),
-                        password: password.trim(),
+                        password: "password.trim()",
                         selectedTeacher: teacher,
                         survey: null,
                         test: null
@@ -186,7 +186,7 @@ const StudentAddView = () => {
             {renderTitle(Lang.form_student_add)}
             {renderTckn()}
             {renderNameTextField()}
-            {renderPassword()}
+            {/*  {renderPassword()} */}
             {renderSchoolNoTextField()}
             {renderPhoneNumber()}
             {renderSaveButton()}
