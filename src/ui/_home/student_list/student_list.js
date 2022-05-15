@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import { StyleSheet, Text, View, FlatList , Image } from "react-native";
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import storage from "../../../core/init/storage/storage";
 import CacheConstant from '../../../core/constant/cache';
@@ -22,6 +22,13 @@ const StudentListView = () => {
         setLoading(false)
         setStudentList(list);
         console.log(list);
+    }
+
+    function renderEmpty(){
+        return <View style={{alignItems :'center'}}>
+            <Image style={{height:100,width:100}} source={{uri : "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/User-info.svg/1024px-User-info.svg.png"}} />
+            <Text>{Lang.list_empty}</Text>
+        </View>
     }
 
     return (
@@ -49,7 +56,7 @@ const StudentListView = () => {
                                 }}
                                 data={item} />
                         }}
-                    /> : <Text>{Lang.list_empty}</Text>
+                    /> : renderEmpty()
             }
         </View>
     );
