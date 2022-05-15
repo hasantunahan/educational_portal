@@ -9,7 +9,7 @@ const DefaultButton = ({ text, onPress }) => {
         height: "4%",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: AppColors.button,
+        backgroundColor: AppColors.blue_tone,
     }} onPress={onPress}>
         <Text style={{
             color: AppColors.whiteText,
