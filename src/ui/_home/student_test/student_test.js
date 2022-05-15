@@ -7,6 +7,7 @@ import Toast from 'react-native-toast-message';
 import { test_text } from './data/data';
 import AppColors from '../../../core/init/theme/colors';
 import Lang from '../../../core/init/lang/en';
+import TestItem from "../../../_product/component/molecules/test_item";
 
 const StundentTestView = (props) => {
     const { route } = props;
@@ -15,7 +16,7 @@ const StundentTestView = (props) => {
     const navigation = useNavigation();
     const [testData, setTestData] = React.useState(null);
     const [rule, setRule] = React.useState(null);
-    const [peopleRelations , setPeopleReleations] = React.useState(null)
+    const [peopleRelations, setPeopleReleations] = React.useState(null)
 
     React.useEffect(() => {
         getStudentTest()
@@ -30,7 +31,7 @@ const StundentTestView = (props) => {
                     console.log("userData", testData);
                     //setAddress(item.survey.address)
                     setRule(item.test.rule);
-                   // setPeopleReleations(item.test.relations)
+                    // setPeopleReleations(item.test.relations)
                 }
             } else {
                 console.log("not found");
@@ -73,18 +74,11 @@ const StundentTestView = (props) => {
 
 
     function renderRuleContainer() {
-        return <View>
-            <Text style={{ paddingHorizontal: 24, marginTop: 16 }}>{Lang.test_rule}</Text>
-            <View style={{ flexDirection: 'row', paddingHorizontal: 16, width: '100%', justifyContent: 'space-around', }}>
-                {test_text.map((item, index) => {
-                    return <TouchableOpacity key={index} onPress={() => { setRule(item) }} style={{ borderRadius: 8, width: '30%', margin: 8, padding: 8, backgroundColor: item == rule ? AppColors.button : 'white' }}>
-                        <Text>{item}</Text>
-                    </TouchableOpacity>
-                })}
-            </View>
-            <View style={{ height: 0.5, backgroundColor: 'black', marginHorizontal: 32, opacity: 0.5, marginVertical: 8 }}>
-            </View>
-        </View>
+        return <TestItem
+            onPress={(item) => setRule(item)}
+            selected={rule}
+            title={Lang.test_rule}
+        />
     }
 
     function renderSaveButton() {
@@ -99,8 +93,8 @@ const StundentTestView = (props) => {
     }
 
     function renderTitlebuilder(text) {
-        return <View style={{ marginVertical:8, marginHorizontal: 16, padding: 8, borderRadius: 8, backgroundColor : AppColors.secondary}}>
-                <Text>{"#"}{text}</Text>
+        return <View style={{ marginVertical: 8, marginHorizontal: 16, padding: 8, borderRadius: 8, backgroundColor: AppColors.secondary }}>
+            <Text>{"#"}{text}</Text>
         </View>
     }
 
