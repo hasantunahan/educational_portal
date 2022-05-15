@@ -21,7 +21,7 @@ export const LoginStyle = StyleSheet.create({
         backgroundColor: AppColors.secondary,
         borderRadius: 8,
         width: "88%",
-        height: "5%",
+        height: 44,
         marginBottom: "5%",
     },
 
