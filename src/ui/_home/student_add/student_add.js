@@ -10,6 +10,7 @@ import { Picker } from "@react-native-picker/picker";
 import { StudentAddStyle } from './style';
 import uuid from 'react-native-uuid';
 import Toast from 'react-native-toast-message'
+import { AppSessions } from '../../../_product/session/session';
 
 
 const StudentAddView = () => {
@@ -37,6 +38,7 @@ const StudentAddView = () => {
     }
 
     async function saveStudentList() {
+        let teacher = userList.filter((item) => item.id == AppSessions.userId)
         if (name != "" && password != "" && phonenumber != "" && tckn != "" && schoolno != "" && selectedTeacher != null) {
             let students = await getStudentLis();
             let list = students ?? [];
@@ -48,9 +50,9 @@ const StudentAddView = () => {
                     schoolNo: schoolno.trim(),
                     tckn: tckn.trim(),
                     password: password.trim(),
-                    selectedTeacher: selectedTeacher,
+                    selectedTeacher: teacher,
                     survey: null,
-                    test : null
+                    test: null
                 });
                 try {
                     await storage.set(CacheConstant.student_list, list);
@@ -69,9 +71,9 @@ const StudentAddView = () => {
                         schoolNo: schoolno.trim(),
                         tckn: tckn.trim(),
                         password: password.trim(),
-                        selectedTeacher: selectedTeacher,
+                        selectedTeacher: teacher,
                         survey: null,
-                        test : null
+                        test: null
                     });
                     storage.set(CacheConstant.student_list, list)
                     navigation.goBack();
@@ -165,8 +167,10 @@ const StudentAddView = () => {
                     height: 120
                 }}
                 selectedValue={selectedTeacher}
-                onValueChange={(itemValue, itemIndex) =>
+                onValueChange={(itemValue, itemIndex) => {
+                    console.log("selected", itemValue)
                     setSelectedTeacher(itemValue)
+                }
                 }>
                 {
                     userList.map((item, index) => {
@@ -185,7 +189,6 @@ const StudentAddView = () => {
             {renderPassword()}
             {renderSchoolNoTextField()}
             {renderPhoneNumber()}
-            {renderTeacherList()}
             {renderSaveButton()}
             <Toast position="bottom" />
         </View>
