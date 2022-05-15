@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native"
+import { View, StyleSheet, TouchableOpacity, Text, ScrollView } from "react-native"
 import { useIsFocused } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 import storage from "../../../core/init/storage/storage";
@@ -17,6 +17,11 @@ const StundentTestView = (props) => {
     const [testData, setTestData] = React.useState(null);
     const [rule, setRule] = React.useState(null);
     const [peopleRelations, setPeopleReleations] = React.useState(null)
+    const [create, setCreate] = React.useState(null)
+    const [timeManagement, setTimeManagement] = React.useState(null)
+    const [mood, setMood] = React.useState(null)
+    const [strongSchool, setStrongSchool] = React.useState(null)
+    const [orderAlphabet, setOrderAlphabet] = React.useState(null);
 
     React.useEffect(() => {
         getStudentTest()
@@ -31,7 +36,12 @@ const StundentTestView = (props) => {
                     console.log("userData", testData);
                     //setAddress(item.survey.address)
                     setRule(item.test.rule);
-                    // setPeopleReleations(item.test.relations)
+                    setPeopleReleations(item.test.relations)
+                    setCreate(item.test.create)
+                    setMood(item.test.mood)
+                    setOrderAlphabet(item.test.orderAlphabet)
+                    setStrongSchool(item.test.strongSchool)
+                    setTimeManagement(item.test.timeManagement)
                 }
             } else {
                 console.log("not found");
@@ -60,7 +70,12 @@ const StundentTestView = (props) => {
             "tckn": user.tckn,
             "test": {
                 "rule": rule,
-                //"relations" : peopleRelations
+                "relations": peopleRelations,
+                "timeManagement": timeManagement,
+                "strongSchool": strongSchool,
+                "orderAlphabet": orderAlphabet,
+                "create": create,
+                "mood": mood,
             }
         }
         await storage.remove(CacheConstant.student_list);
@@ -78,6 +93,54 @@ const StundentTestView = (props) => {
             onPress={(item) => setRule(item)}
             selected={rule}
             title={Lang.test_rule}
+        />
+    }
+
+    function renderRelationscontainer() {
+        return <TestItem
+            onPress={(item) => setPeopleReleations(item)}
+            selected={peopleRelations}
+            title={Lang.test_people_relations}
+        />
+    }
+
+    function renderCreateIdeasContainer() {
+        return <TestItem
+            onPress={(item) => setCreate(item)}
+            selected={create}
+            title={Lang.test_create}
+        />
+    }
+
+    function renderorderAlphabetContainer() {
+        return <TestItem
+            onPress={(item) => setOrderAlphabet(item)}
+            selected={orderAlphabet}
+            title={Lang.test_order_alphabet}
+        />
+    }
+
+    function renderStrongSchoolContainer() {
+        return <TestItem
+            onPress={(item) => setStrongSchool(item)}
+            selected={strongSchool}
+            title={Lang.test_strong_school}
+        />
+    }
+
+    function renderMoodContainer() {
+        return <TestItem
+            onPress={(item) => setMood(item)}
+            selected={mood}
+            title={Lang.test_mood}
+        />
+    }
+
+    function renderTimeManagementContainer() {
+        return <TestItem
+            onPress={(item) => setTimeManagement(item)}
+            selected={timeManagement}
+            title={Lang.test_time}
         />
     }
 
@@ -100,9 +163,18 @@ const StundentTestView = (props) => {
 
     return (
         <View style={styles.body}>
-            {renderTitlebuilder(Lang.test_personel_title)}
-            {renderRuleContainer()}
-            {renderSaveButton()}
+            <ScrollView>
+                {renderTitlebuilder(Lang.test_personel_title)}
+                {renderRuleContainer()}
+                {renderRelationscontainer()}
+                {renderCreateIdeasContainer()}
+                {renderTimeManagementContainer()}
+                {renderMoodContainer()}
+                {renderTitlebuilder(Lang.general_qua_title)}
+                {renderStrongSchoolContainer()}
+                {renderorderAlphabetContainer()}
+                {renderSaveButton()}
+            </ScrollView>
             <Toast position="bottom" />
         </View>
     );

@@ -29,8 +29,8 @@ export default Lang = {
     test_create: "Does he/she have creative ideas?",
     test_time: "Does he/she have good time management?",
     test_mood: "How is the mood",
-    general_qua_title: "General qualification",
+    general_qua_title: "General qualification test",
     test_strong_school: "Does he/she have difficulty in school even though there is no problem at the intelligence level?",
     test_order_alphabet: "Has trouble remembering the order of the alphabet?",
-    test_personel_title: "Personal inventory "
+    test_personel_title: "Personal inventory test"
 }
