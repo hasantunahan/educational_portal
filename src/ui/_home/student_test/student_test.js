@@ -15,6 +15,7 @@ const StundentTestView = (props) => {
     const navigation = useNavigation();
     const [testData, setTestData] = React.useState(null);
     const [rule, setRule] = React.useState(null);
+    const [peopleRelations , setPeopleReleations] = React.useState(null)
 
     React.useEffect(() => {
         getStudentTest()
@@ -29,6 +30,7 @@ const StundentTestView = (props) => {
                     console.log("userData", testData);
                     //setAddress(item.survey.address)
                     setRule(item.test.rule);
+                   // setPeopleReleations(item.test.relations)
                 }
             } else {
                 console.log("not found");
@@ -57,6 +59,7 @@ const StundentTestView = (props) => {
             "tckn": user.tckn,
             "test": {
                 "rule": rule,
+                //"relations" : peopleRelations
             }
         }
         await storage.remove(CacheConstant.student_list);
@@ -70,28 +73,40 @@ const StundentTestView = (props) => {
 
 
     function renderRuleContainer() {
-        return <View style={{ flexDirection: 'row', padding: 16 }}>
-            {test_text.map((item, index) => {
-                return <TouchableOpacity onPress={() => { setRule(item) }} style={{ borderRadius: 8, margin: 8, backgroundColor: item == rule ? 'red' : 'white' }}>
-                    <Text>{item}</Text>
-                </TouchableOpacity>
-            })}
+        return <View>
+            <Text style={{ paddingHorizontal: 24, marginTop: 16 }}>{Lang.test_rule}</Text>
+            <View style={{ flexDirection: 'row', paddingHorizontal: 16, width: '100%', justifyContent: 'space-around', }}>
+                {test_text.map((item, index) => {
+                    return <TouchableOpacity key={index} onPress={() => { setRule(item) }} style={{ borderRadius: 8, width: '30%', margin: 8, padding: 8, backgroundColor: item == rule ? AppColors.button : 'white' }}>
+                        <Text>{item}</Text>
+                    </TouchableOpacity>
+                })}
+            </View>
+            <View style={{ height: 0.5, backgroundColor: 'black', marginHorizontal: 32, opacity: 0.5, marginVertical: 8 }}>
+            </View>
         </View>
     }
 
     function renderSaveButton() {
         return <TouchableOpacity
-            style={{height:44,backgroundColor : AppColors.background,alignItems:'center',justifyContent :'center'}}
+            style={{ margin: 16, borderRadius: 8, height: 44, backgroundColor: AppColors.background, alignItems: 'center', justifyContent: 'center' }}
             onPress={async () => {
                 await updateTest()
             }}
         >
-            <Text>{Lang.save}</Text>
+            <Text style={{ color: AppColors.whiteText }}>{Lang.save}</Text>
         </TouchableOpacity>
+    }
+
+    function renderTitlebuilder(text) {
+        return <View style={{ marginVertical:8, marginHorizontal: 16, padding: 8, borderRadius: 8, backgroundColor : AppColors.secondary}}>
+                <Text>{"#"}{text}</Text>
+        </View>
     }
 
     return (
         <View style={styles.body}>
+            {renderTitlebuilder(Lang.test_personel_title)}
             {renderRuleContainer()}
             {renderSaveButton()}
             <Toast position="bottom" />

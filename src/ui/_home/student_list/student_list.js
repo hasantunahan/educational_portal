@@ -37,6 +37,11 @@ const StudentListView = () => {
                                         student_id: item.id
                                     })
                                 }}
+                                onPressSurvey={() => {
+                                    navigation.navigate(NavigationConstant.student_survey, {
+                                        student_id: item.id
+                                    })
+                                }}
                                 testOnPress={() => {
                                     navigation.navigate(NavigationConstant.student_test, {
                                         student_id: item.id
