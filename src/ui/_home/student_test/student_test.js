@@ -146,7 +146,7 @@ const StundentTestView = (props) => {
 
     function renderSaveButton() {
         return <TouchableOpacity
-            style={{ margin: 16, borderRadius: 8, height: 44, backgroundColor: AppColors.background, alignItems: 'center', justifyContent: 'center' }}
+            style={{ margin: 16, borderRadius: 8, height: 44, backgroundColor: AppColors.blue_tone, alignItems: 'center', justifyContent: 'center' }}
             onPress={async () => {
                 await updateTest()
             }}
