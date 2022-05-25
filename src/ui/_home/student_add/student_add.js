@@ -39,7 +39,7 @@ const StudentAddView = () => {
 
     async function saveStudentList() {
         let teacher = userList.filter((item) => item.id == AppSessions.userId)
-        if (name != "" && password != "" && phonenumber != "" && tckn != "" && schoolno != "" && selectedTeacher != null) {
+        if (name != "" && phonenumber != "" && tckn != "" && schoolno != "" && selectedTeacher != null) {
             let students = await getStudentLis();
             let list = students ?? [];
             if (students == null) {
